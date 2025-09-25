@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { Container, LogOutBtn } from "../index"
@@ -11,7 +11,13 @@ function Header() {
   const authStatus = useSelector((state) => state.auth.authStatus)
   const { userData } = useSelector((state) => state.auth)
   const userType = useSelector((state) => state.auth.role)
-  const [cartCount, setCartCount] = useState(2)
+  const [cartCount, setCartCount] = useState(0)
+  const cartItems = useSelector((state) => state.carts.cartItems)
+
+  useEffect(() => {
+    setCartCount(cartItems?.length || 0);
+  }, [cartItems])
+
   const navItems = [
     {
       url: "/",
@@ -53,7 +59,7 @@ function Header() {
     <header className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex items-center justify-between h-16">
-          
+
           <ul className="flex space-x-8">
             {leftNavItems.map((item) =>
               item.active ? (
@@ -69,9 +75,9 @@ function Header() {
             )}
           </ul>
 
-         
+
           <ul className="flex items-center space-x-4">
-            
+
             <li className="flex items-center">
               <div
                 className="relative cursor-pointer p-2"
@@ -86,7 +92,7 @@ function Header() {
               </div>
             </li>
 
-            
+
             {rightNavItems.map((item) =>
               item.active ? (
                 <li key={item.name} className="flex items-center">
@@ -100,7 +106,7 @@ function Header() {
               ) : null
             )}
 
-            
+
             {authStatus && (
               <>
                 <li className="flex items-center">
@@ -124,7 +130,7 @@ function Header() {
                   </div>
                 </li>
 
-                
+
                 <li className="flex items-center h-16">
                   <div className="flex items-center h-full">
                     <LogOutBtn

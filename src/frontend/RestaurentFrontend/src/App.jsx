@@ -8,12 +8,15 @@ import { useDispatch, useSelector } from "react-redux"
 import categoryService from "./services/categoriesService"
 import { login, logout } from "./features/auth/authSlice"
 import { jwtDecode } from 'jwt-decode';
+import cartService from './services/cartService'
+import { setCartItems } from "./features/cart/cartSlice"
 
 function App() {
 
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true)
   const authStatus = useSelector((state) => state.auth.authStatus)
+  const userId = useSelector((state)=>state.auth.userData?.userId)
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -29,7 +32,7 @@ function App() {
           email: decodedToken.email
         };
 
-        
+
         dispatch(login({
           token,
           user: userData,
@@ -69,6 +72,16 @@ function App() {
         console.log(error)
       })
   }, [])
+
+  useEffect(() => {
+    cartService.GetCartItems(userId)
+      .then((response) => {
+        if (response != null)
+          dispatch(setCartItems(response))
+      }).catch((error) => {
+        console.log(error)
+      })
+  }, [userId])
 
   return (
     <div className="min-h-screen flex flex-col">

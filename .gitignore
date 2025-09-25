@@ -1,0 +1,13 @@
+.vs/
+*.user
+*.suo
+
+[Bb]in/
+[Oo]bj/
+
+node_modules/
+build/
+dist/
+
+*.log
+.env*

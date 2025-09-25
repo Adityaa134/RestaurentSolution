@@ -125,6 +125,30 @@ namespace Restaurent.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Restaurent.Core.Domain.Entities.Carts", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("DishId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DishId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Carts", (string)null);
+                });
+
             modelBuilder.Entity("Restaurent.Core.Domain.Entities.Category", b =>
                 {
                     b.Property<Guid>("Id")
@@ -149,13 +173,13 @@ namespace Restaurent.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("582e8288-4fcb-4c98-98cd-b0fbefe29552"),
+                            Id = new Guid("66d8d291-9890-4d14-84a8-a6d5fcdabb16"),
                             CategoryName = "Pizza",
                             Status = true
                         },
                         new
                         {
-                            Id = new Guid("4de3cf15-47aa-4fa3-8ecc-265d0a0d04ff"),
+                            Id = new Guid("33c39f6a-c706-4d51-bc3b-97c798cb3299"),
                             CategoryName = "Beverages",
                             Status = true
                         });
@@ -193,44 +217,6 @@ namespace Restaurent.Infrastructure.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Dishes", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            DishId = new Guid("34adc259-fc50-4519-bd52-190ce9cfe61e"),
-                            CategoryId = new Guid("4de3cf15-47aa-4fa3-8ecc-265d0a0d04ff"),
-                            Description = "Cold coffee is a coffee beverage served cold",
-                            DishName = "Cold Coffee",
-                            Image_Path = "/Images/cold-coffee.jpg",
-                            Price = 120m
-                        },
-                        new
-                        {
-                            DishId = new Guid("f649bdc4-7e9c-4026-a7af-91bdd7db7df2"),
-                            CategoryId = new Guid("4de3cf15-47aa-4fa3-8ecc-265d0a0d04ff"),
-                            Description = "A rich and creamy Oreo shake, blended to perfection with real Oreo cookies and vanilla ice cream for a delightful and indulgent treat",
-                            DishName = "Oreo Shake",
-                            Image_Path = "/Images/oreo-shake.jpg",
-                            Price = 249m
-                        },
-                        new
-                        {
-                            DishId = new Guid("0af2f6d6-a3bd-4b68-9193-1078f696e888"),
-                            CategoryId = new Guid("582e8288-4fcb-4c98-98cd-b0fbefe29552"),
-                            Description = "a sweet and savory combination of golden corn kernels and melted cheese, often with a flavorful sauce and a perfectly baked crust.",
-                            DishName = "Corn Pizza",
-                            Image_Path = "/Images/corn-pizza.jpg",
-                            Price = 110m
-                        },
-                        new
-                        {
-                            DishId = new Guid("8d64dfb9-1ee5-4e32-97de-6c1edf8506dc"),
-                            CategoryId = new Guid("582e8288-4fcb-4c98-98cd-b0fbefe29552"),
-                            Description = "a classic dish featuring a baked dough base topped with tomato sauce and a generous layer of melted cheese, typically mozzarella, and sometimes other cheeses like parmesan or provolone.",
-                            DishName = "Cheese Pizza",
-                            Image_Path = "/Images/cheese-pizza.jpg",
-                            Price = 150m
-                        });
                 });
 
             modelBuilder.Entity("Restaurent.Core.Domain.Identity.ApplicationRole", b =>
@@ -384,6 +370,23 @@ namespace Restaurent.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Restaurent.Core.Domain.Entities.Carts", b =>
+                {
+                    b.HasOne("Restaurent.Core.Domain.Entities.Dish", "Dishes")
+                        .WithMany("CartItems")
+                        .HasForeignKey("DishId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Restaurent.Core.Domain.Identity.ApplicationUser", "Users")
+                        .WithMany("Carts")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Dishes");
+
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("Restaurent.Core.Domain.Entities.Dish", b =>
                 {
                     b.HasOne("Restaurent.Core.Domain.Entities.Category", "Category")
@@ -398,6 +401,16 @@ namespace Restaurent.Infrastructure.Migrations
             modelBuilder.Entity("Restaurent.Core.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Dishes");
+                });
+
+            modelBuilder.Entity("Restaurent.Core.Domain.Entities.Dish", b =>
+                {
+                    b.Navigation("CartItems");
+                });
+
+            modelBuilder.Entity("Restaurent.Core.Domain.Identity.ApplicationUser", b =>
+                {
+                    b.Navigation("Carts");
                 });
 #pragma warning restore 612, 618
         }

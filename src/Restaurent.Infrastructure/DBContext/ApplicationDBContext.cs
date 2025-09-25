@@ -15,6 +15,7 @@ namespace Restaurent.Infrastructure.DBContext
 
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Carts> Carts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,9 +24,7 @@ namespace Restaurent.Infrastructure.DBContext
 
             modelBuilder.Entity<Dish>().ToTable("Dishes");
             modelBuilder.Entity<Category>().ToTable("Categories");
-
-            
-           
+            modelBuilder.Entity<Carts>().ToTable("Carts");
         }
     }
 }

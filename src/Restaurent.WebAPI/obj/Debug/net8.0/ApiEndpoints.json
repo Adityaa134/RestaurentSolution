@@ -195,6 +195,75 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Restaurent.WebAPI.Controllers.DishesController",
+    "Method": "AddToCart",
+    "RelativePath": "api/Dishes/add-to-cart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addToCartRequest",
+        "Type": "Restaurent.Core.DTO.AddToCartRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurent.WebAPI.Controllers.DishesController",
+    "Method": "CheckCartItemExist",
+    "RelativePath": "api/Dishes/CheckCartItemExist",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Nullable\u00601[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "dishId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurent.WebAPI.Controllers.DishesController",
+    "Method": "GetCartItems",
+    "RelativePath": "api/Dishes/GetCartItems",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Nullable\u00601[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Restaurent.WebAPI.Controllers.DishesController",
+    "Method": "UpdateQuantity",
+    "RelativePath": "api/Dishes/update-quantity",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateQuantityRequest",
+        "Type": "Restaurent.Core.DTO.UpdateQuantityRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Restaurent.WebAPI.Controllers.HomeController",
     "Method": "PutDish",
     "RelativePath": "api/Home",
@@ -296,23 +365,5 @@
       }
     ],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Restaurent.WebAPI.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Restaurent.WebAPI.WeatherForecast, Restaurent.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
   }
 ]

@@ -1,6 +1,5 @@
 import axiosInstance from "../axios/axiosInstance"
 
-const url = "https://localhost:7219/api/Categories/"
 
 export class CategoryService{
     async GetCategories(){

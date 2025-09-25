@@ -18,6 +18,7 @@ import {Protected} from "./components/index.js"
 import Categories from "./pages/Categories.jsx"
 import ForgotPassword from "./pages/ForgotPassword.jsx"
 import ResetPassword from "./pages/ResetPassword.jsx"
+import Cart from "./pages/Cart.jsx"
 
 
 const router = createBrowserRouter([
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
       {
         path: "/reset-password",
         element: < ResetPassword />
+      },
+      {
+        path: "/cart",
+        element: < Cart />
       }
     ]
   }

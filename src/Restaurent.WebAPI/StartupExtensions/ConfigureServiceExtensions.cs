@@ -31,11 +31,16 @@ namespace Restaurent.WebAPI.StartupExtensions
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IEmailSenderService, EmailSenderService>();
+            services.AddScoped<IAddCartItemsService, AddCartItemsService>();
+            services.AddScoped<IGetCartItemsService, GetCartItemsService>();
+            services.AddScoped<IRemoveCartItemsService, RemoveCartItemsService>();
+            services.AddScoped<IUpdateItemQuantityInCart, UpdateItemQuantityInCart>();
             services.Configure<SMTPConfigOptions>(configuration.GetSection("SMTPConfig"));
 
 
             services.AddScoped<IDishRepository, DishRepository>();
             services.AddScoped<ICategoryRepository, CategoriesRepository>();
+            services.AddScoped<ICartsRepository, CartsRepository>();
 
 
             services.AddIdentity<ApplicationUser, ApplicationRole>(options =>

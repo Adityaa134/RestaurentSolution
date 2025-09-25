@@ -22,3 +22,4 @@ C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.Core\obj\Debug\net8.0\Res
 C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.Core\obj\Debug\net8.0\refint\Restaurent.Core.dll
 C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.Core\obj\Debug\net8.0\Restaurent.Core.pdb
 C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.Core\obj\Debug\net8.0\ref\Restaurent.Core.dll
+C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.Core\obj\Debug\net8.0\Restaurent.Core.sourcelink.json

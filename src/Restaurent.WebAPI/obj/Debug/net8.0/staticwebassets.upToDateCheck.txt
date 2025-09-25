@@ -1,12 +1,4 @@
-wwwroot\Images\18f883cd-0944-4913-8100-ba6663402a92_onion-pizza.jpg
-wwwroot\Images\206e5a06-4f9c-47b5-bb3d-ec3a94d007be_oreo-shake.jpg
-wwwroot\Images\2672a493-6004-4ccb-9f54-c744f966339f_cheese-pizza.jpg
-wwwroot\Images\50924a14-f422-456b-af34-c6a0dd59d264_strawberry-shake.jpg
-wwwroot\Images\a9853916-6145-403d-8dff-251098bc61f5_strawberry-shake.jpg
-wwwroot\Images\aebe83d4-ac18-407c-851b-d06d5f0a5286_strawberry-shake.jpg
-wwwroot\Images\cheese-pizza.jpg
-wwwroot\Images\corn-pizza.jpg
-wwwroot\Images\dac8f504-779d-4d92-b003-0e93d45ed4b7_pizza.jpg
-wwwroot\Images\ed3f8b20-0ea8-4686-867f-71891f671ffe_onion-pizza.jpg
-wwwroot\Images\f6f2c004-bd42-437c-acbf-48b027809475_strawberry-shake.jpg
-wwwroot\Images\oreo-shake.jpg
+wwwroot\Images\33e8ee89-acc3-4ecb-b4f3-f74e73ed000e_strawberry-shake.jpg
+wwwroot\Images\402cf1aa-f918-4ef5-856f-fd277543d035_onion-pizza.jpg
+wwwroot\Images\5ab62bb0-f00a-4ec2-997c-d358882210e1_coca-cola.jpg
+wwwroot\Images\6cde3d7a-3d51-4232-aef3-ffbed2cc7c91_cheese-pizza.jpg

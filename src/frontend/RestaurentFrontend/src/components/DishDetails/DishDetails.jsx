@@ -3,21 +3,26 @@ import { useParams, useNavigate } from "react-router-dom"
 import dishService from "../../services/dishService"
 import { Button } from "../index"
 import { deleteDish } from "../../features/dishes/dishSlice"
-import { useDispatch } from "react-redux"
-import { useSelector } from "react-redux"
+import { useDispatch,useSelector } from "react-redux"
+import {addItemToCart} from "../../features/cart/cartSlice"
+import cartService from '../../services/cartService'
+
 
 function DishDetails() {
+    const userId = useSelector((state) => state.auth.userData?.userId);
+    const [itemAdded, setItemAdded] = useState("Order Now");
     const [dish, setDish] = useState(null)
     const [loading, setLoading] = useState(true)
     const { dishId } = useParams()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const userType = useSelector((state) => state.auth.role)
+    
     useEffect(() => {
         try {
             const fetchData = async () => {
                 const data = await dishService.GetDishById(dishId);
-                setDish(data); // Set the response state
+                setDish(data); 
                 setLoading(false);
             };
             fetchData();
@@ -26,6 +31,26 @@ function DishDetails() {
             setLoading(false)
         }
     }, [dishId])
+
+     useEffect(() => {
+        const checkItemInCart = async () => {
+            if (dishId) {
+                try {
+                    const exists = await cartService.CheckCartItemExist(userId, dishId);
+                    if (exists) {
+                        setItemAdded("View Item");
+                    } else {
+                        setItemAdded("Order Now");
+                    }
+                } catch (error) {
+                    console.log("Error checking item in cart:", error);
+                    setItemAdded("Order Now");
+                }
+            }
+        };
+
+        checkItemInCart();
+    }, [userId, dishId]);
 
     const handleDelete = async () => {
         if (window.confirm("Are you sure you want to delete this dish?")) {
@@ -48,6 +73,27 @@ function DishDetails() {
 
     const handleEdit = () => {
         navigate(`/edit-dish/${dishId}`);
+    };
+
+    const addItem = async () => {
+        try {
+            const response = await cartService.AddItemToCart(userId, dishId);
+            if (response) {
+                dispatch(addItemToCart(response));
+                setItemAdded("View Item");
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleOrderButton = () => {
+        if (itemAdded === "Order Now") {
+            addItem();
+        } else if (itemAdded === "View Item") {
+            navigate("/cart");
+        }
     };
 
     return (
@@ -87,8 +133,10 @@ function DishDetails() {
                                     <span className="text-2xl font-bold text-green-600">
                                         ₹ {dish.price}
                                     </span>
-                                    <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-sm transition-colors duration-200 w-full sm:w-auto text-center">
-                                        Order Now
+                                    <Button
+                                    onClick={handleOrderButton}
+                                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-sm transition-colors duration-200 w-full sm:w-auto text-center">
+                                        {itemAdded}
                                     </Button>
                                 </div>
 

@@ -25,22 +25,22 @@ namespace Restaurent.Core.Service
             if (imageFile == null || imageFile.Length == 0)
                 throw new ArgumentException("New image file is required");
 
-            // Get wwwroot path
+            
             var webRootPath = Path.Combine(_hostEnvironment.ContentRootPath, "wwwroot");
 
-            // Ensure images directory exists
+            
             var imagesDirectory = Path.Combine(webRootPath, subFolder);
             if (!Directory.Exists(imagesDirectory))
             {
                 Directory.CreateDirectory(imagesDirectory);
             }
 
-            // Generating new filename and paths
+            
             var newFileName = $"{Guid.NewGuid()}_{Path.GetFileName(imageFile.FileName)}";
             var newRelativePath = Path.Combine(subFolder, newFileName);
             var newAbsolutePath = Path.Combine(webRootPath, newRelativePath);
 
-            // Save new image
+            
             using (var stream = new FileStream(newAbsolutePath, FileMode.Create))
             {
                 await imageFile.CopyToAsync(stream);
@@ -52,7 +52,7 @@ namespace Restaurent.Core.Service
                 await _imageDeleteService.ImageDeleter(existingUrl);
             }
 
-            // Return new relative URL (with forward slashes)
+            
             return $"/{newRelativePath.Replace("\\", "/")}";
 
         }

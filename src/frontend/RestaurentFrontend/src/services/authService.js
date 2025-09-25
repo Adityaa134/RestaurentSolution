@@ -127,10 +127,6 @@ export class AuthService {
     }
 
     async ResetPassword(uid,token,password,confirmPassword){
-        console.log(uid)
-        console.log(token)
-        console.log(password)
-        console.log(confirmPassword)
         try {
             const response = axiosInstance.post(`/Account/reset-password`,{
                 Uid : uid.toString(),
@@ -138,7 +134,6 @@ export class AuthService {
                 Password:password.toString(),
                 ConfirmPassword:confirmPassword.toString()
             })
-            console.log(response)
             return true
         } catch (error) {
             console.log("AuthService :: ResetPassword :: ", error);

@@ -32,3 +32,4 @@ C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.Infrastructure\obj\Debug\
 C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.Infrastructure\obj\Debug\net8.0\Restaurent.Infrastructure.pdb
 C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.Infrastructure\obj\Debug\net8.0\Restaurent.Infrastructure.genruntimeconfig.cache
 C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.Infrastructure\obj\Debug\net8.0\ref\Restaurent.Infrastructure.dll
+C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.Infrastructure\obj\Debug\net8.0\Restaurent.Infrastructure.sourcelink.json

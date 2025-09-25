@@ -22,6 +22,8 @@ namespace Restaurent.Core.Domain.Entities
         public Guid CategoryId { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
-        public Category Category { get; set; } 
+        public Category Category { get; set; }
+
+        public ICollection<Carts> CartItems { get; set; } = new List<Carts>();
     }
 }

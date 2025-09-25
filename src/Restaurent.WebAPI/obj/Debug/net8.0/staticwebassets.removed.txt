@@ -1,1 +1,0 @@
-C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.WebAPI\wwwroot\Images\cheese-pizza.jpg

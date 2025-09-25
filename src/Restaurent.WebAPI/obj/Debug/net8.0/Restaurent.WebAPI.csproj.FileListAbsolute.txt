@@ -604,3 +604,4 @@ C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.WebAPI\obj\Debug\net8.0\r
 C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.WebAPI\obj\Debug\net8.0\Restaurent.WebAPI.pdb
 C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.WebAPI\obj\Debug\net8.0\Restaurent.WebAPI.genruntimeconfig.cache
 C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.WebAPI\obj\Debug\net8.0\ref\Restaurent.WebAPI.dll
+C:\ASPNETCOREProject\RestaurentSolution\src\Restaurent.WebAPI\obj\Debug\net8.0\Restaurent.WebAPI.sourcelink.json

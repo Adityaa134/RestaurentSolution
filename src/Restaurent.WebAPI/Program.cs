@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.IdentityModel.Tokens;
+using Restaurent.WebAPI.Middleware;
 using Restaurent.WebAPI.StartupExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,7 +36,6 @@ builder.Services.AddCors(options =>
         policyBuilder.WithOrigins(builder.Configuration["AllowedOrigins:OriginName"])
         .WithMethods("GET", "POST", "PUT", "DELETE")
         .WithHeaders("Authorization", "origin", "content-type", "accept");
-
     });
 });
 
@@ -68,7 +68,14 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
-
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandlingMiddleware();
+}
 
 
 app.UseHttpsRedirection();

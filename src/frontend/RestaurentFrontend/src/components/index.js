@@ -18,6 +18,7 @@ import PageNotExist from "./PageNotExist/PageNotExist";
 import Categories from "./Categories/Categories"
 import ForgotPassword from "./ForgotPassword/ForgotPassword";
 import ResetPassword from "./ResetPassword/ResetPassword";
+import Cart from "./Cart/Cart";
 
 export {
     Header,
@@ -39,5 +40,6 @@ export {
     PageNotExist,
     Categories,
     ForgotPassword,
-    ResetPassword
+    ResetPassword,
+    Cart
 }

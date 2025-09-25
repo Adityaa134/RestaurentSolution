@@ -24,14 +24,14 @@ namespace Restaurent.Core.Service
             // Getting wwwroot path by combining ContentRootPath with wwwroot
             var wwwrootPath = Path.Combine(_hostEnvironment.ContentRootPath, "wwwroot");
 
-            // Create target directory if it doesn't exist
+            
             var targetFolder = Path.Combine(wwwrootPath, subFolder);
             if (!Directory.Exists(targetFolder))
             {
                 Directory.CreateDirectory(targetFolder);
             }
 
-            // Generating unique filename
+           
             var uniqueFileName = $"{Guid.NewGuid()}_{Path.GetFileName(imageFile.FileName)}";
             var filePath = Path.Combine(targetFolder, uniqueFileName);
 
