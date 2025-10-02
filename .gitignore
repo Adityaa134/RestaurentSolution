@@ -1,0 +1,24 @@
+# .NET build outputs
+bin/
+obj/
+*.dll
+*.pdb
+*.exe
+*.deps.json
+project.assets.json
+*.nuget.*
+project.nuget.cache
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Node / React
+node_modules/
+build/
+dist/
+
+# Logs and environment files
+*.log
+.env*
