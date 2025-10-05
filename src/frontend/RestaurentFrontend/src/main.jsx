@@ -14,11 +14,12 @@ import ConfirmEmailSuccess from './pages/ConfirmEmailSuccess.jsx'
 import DishDetails from "./pages/DishDetails.jsx"
 import EditDish from "./pages/EditDish.jsx"
 import PageNotExist from "./pages/PageNotExist.jsx"
-import {Protected} from "./components/index.js"
+import { Protected } from "./components/index.js"
 import Categories from "./pages/Categories.jsx"
 import ForgotPassword from "./pages/ForgotPassword.jsx"
 import ResetPassword from "./pages/ResetPassword.jsx"
 import Cart from "./pages/Cart.jsx"
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 
 const router = createBrowserRouter([
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
         path: "/login",
         element: (
           <Protected authentication={false}>
-             < Login />
+            < Login />
           </Protected>
         )
       },
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
         path: "/register",
         element: (
           <Protected authentication={false}>
-             < Register />
+            < Register />
           </Protected>
         )
       },
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
         path: "/add-dish",
         element: (
           <Protected requiredRole="admin">
-             < AddDish />
+            < AddDish />
           </Protected>
         )
       },
@@ -74,7 +75,7 @@ const router = createBrowserRouter([
         path: "/edit-dish/:dishId",
         element: (
           <Protected requiredRole="admin">
-             < EditDish />
+            < EditDish />
           </Protected>
         )
       },
@@ -101,9 +102,9 @@ const router = createBrowserRouter([
 
 
 createRoot(document.getElementById('root')).render(
-
-  <Provider store={store}>
-    <RouterProvider router={router} />
-  </Provider>
-
+  <GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </GoogleOAuthProvider>
 )

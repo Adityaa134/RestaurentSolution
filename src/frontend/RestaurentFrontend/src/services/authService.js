@@ -140,6 +140,15 @@ export class AuthService {
             return false
         }
     }
+
+    async GoogleLogin(credentials){
+       try {
+         const response =await axiosInstance.post(`/ExternalLogin/signin-google?credential=${credentials}`)
+         return response.data
+       } catch (error) {
+         console.log("AuthService :: GoogleLogin :: ", error)
+       }
+    }
 }
 
 const authService = new AuthService();

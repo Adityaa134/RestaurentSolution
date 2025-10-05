@@ -1,4 +1,5 @@
 ﻿using System;
+using Google.Apis.Auth;
 using Microsoft.AspNetCore.Identity;
 using Restaurent.Core.Domain.Identity;
 using Restaurent.Core.DTO;
@@ -99,5 +100,13 @@ namespace Restaurent.Core.ServiceContracts
         /// <param name="resetPasswordDTO">The new password details</param>
         /// <returns>Returns the result if updation of password is succesfull or not </returns>
         Task<IdentityResult> ResetPassword(ResetPasswordDTO resetPasswordDTO);
+
+        /// <summary>
+        /// Creates a new user account from Google OAuth payload.
+        /// </summary>
+        /// <param name="payload">Google authentication payload with user details.</param>
+        /// <returns>IdentityResult indicating success/failure, or null if user's account is alerady created.</returns>
+        Task<IdentityResult?> Register(GoogleJsonWebSignature.Payload payload);
+
     }
 }

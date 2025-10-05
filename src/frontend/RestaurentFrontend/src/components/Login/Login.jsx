@@ -6,7 +6,7 @@ import authService from "../../services/authService"
 import { login as authLogin } from "../../features/auth/authSlice"
 import { useDispatch } from 'react-redux'
 import { Input, Button } from "../index"
-
+import { GoogleLogin } from '@react-oauth/google';
 
 function Login() {
   const [error, setError] = useState("");
@@ -32,6 +32,22 @@ function Login() {
       setError(error.message)
     }
   }
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    setError("")
+    try {
+      const response = await authService.GoogleLogin(credentialResponse.credential)
+      if (response.token) {
+        dispatch(authLogin(response))
+        localStorage.setItem("token", response.token)
+        localStorage.setItem("refreshToken", response.refreshToken)
+        navigate("/")
+      }
+    } catch (error) {
+      setError(error.message)
+    }
+  }
+
   return (
 
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -129,7 +145,7 @@ function Login() {
             </Button>
           </form>
 
-          
+
           {error && (
             <div className="mt-6 rounded-md bg-red-50 p-4 border border-red-200">
               <div className="text-sm text-red-700 text-center">
@@ -138,7 +154,22 @@ function Login() {
             </div>
           )}
 
-          
+          <div className="my-4 flex items-center">
+            <hr className="flex-grow border-gray-300" />
+            <span className="mx-4 text-gray-500">OR</span>
+            <hr className="flex-grow border-gray-300" />
+          </div>
+
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => console.log('Login Failed')}
+            theme="outline"
+            size="large"
+            text="continue_with"
+            shape="rectangular"
+          />
+
+
           <div className="mt-6">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">

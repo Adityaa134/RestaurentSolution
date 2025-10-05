@@ -1,5 +1,6 @@
 ﻿using System;
 using ECommerce.Core.Enums;
+using Google.Apis.Auth;
 using Microsoft.AspNetCore.Identity;
 using Restaurent.Core.Domain.Identity;
 using Restaurent.Core.DTO;
@@ -182,5 +183,50 @@ namespace Restaurent.Core.Service
         {
             return await _userManager.ResetPasswordAsync(await _userManager.FindByIdAsync(resetPasswordDTO.Uid), resetPasswordDTO.Token, resetPasswordDTO.Password);
         }
+
+        public async Task<IdentityResult?> Register(GoogleJsonWebSignature.Payload payload)
+        {
+            if (payload == null)
+                throw new ArgumentNullException(nameof(payload));
+
+            ApplicationUser? user = await _userManager.FindByEmailAsync(payload.Email);
+            if (user == null)
+            {
+                ApplicationUser newUser = new ApplicationUser()
+                {
+                    Email = payload.Email,
+                    UserName = payload.Name,
+                    EmailConfirmed = payload.EmailVerified
+                };
+
+                IdentityResult result = await _userManager.CreateAsync(newUser);
+
+                if (result.Succeeded)
+                {
+                    if (await _roleManager.FindByNameAsync(UserTypeOptions.User.ToString()) is null)
+                    {
+                        ApplicationRole role = new ApplicationRole()
+                        {
+                            Name = UserTypeOptions.User.ToString()
+                        };
+
+                        await _roleManager.CreateAsync(role);
+
+                        await _userManager.AddToRoleAsync(user, UserTypeOptions.User.ToString());
+
+                        return result;
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(newUser, UserTypeOptions.User.ToString());
+                        return result;
+                    }
+                }
+
+                return result;
+            }
+            return null;
+        }
+
     }
 }
